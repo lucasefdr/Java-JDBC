@@ -12,17 +12,16 @@ public class TestaConexao {
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "kneladev",
                 "kneladev");
 
-        try {
-            // Guardando o resultado de uma querie nem um ResultSet
-            ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM EMPLOYEES");
-            while (rs.next()) {
-                System.out.println(rs.getString("first_name"));
-            }
-        } catch (Exception e) {
+        // Guardando o resultado de uma query nem um ResultSet
+        ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM EMPLOYEES");
 
-        } finally {
-            connection.close();
+        while (rs.next()) {
+            Integer id = rs.getInt("employee_id");
+            String first_name = rs.getString("first_name");
+
+            System.out.println("ID: " + id + " - First name: " + first_name);
         }
 
+        connection.close();
     }
 }
