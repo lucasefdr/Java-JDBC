@@ -4,7 +4,7 @@ package io.github.lucasefdr;
  * Hello world!
  *
  */
-public class App 
+public class Startup 
 {
     public static void main( String[] args )
     {
