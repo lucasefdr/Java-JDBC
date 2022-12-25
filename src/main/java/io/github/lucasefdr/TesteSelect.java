@@ -12,7 +12,7 @@ public class TesteSelect {
         Connection connection = connectionFactory.connection();
 
         // Guardando o resultado de uma query em um ResultSet
-        ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM EMPLOYEES");
+        ResultSet rs = connection.prepareStatement("SELECT * FROM EMPLOYEES").executeQuery();
 
         while (rs.next()) {
             Integer id = rs.getInt("employee_id");

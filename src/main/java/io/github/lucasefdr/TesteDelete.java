@@ -1,7 +1,7 @@
 package io.github.lucasefdr;
 
-import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class TesteDelete {
@@ -10,13 +10,12 @@ public class TesteDelete {
         Connection connection = connectionFactory.connection();
 
         // Criando a declaração
-        Statement statement = connection.createStatement();
-        statement.execute("DELETE FROM employees WHERE first_name = 'Lara' AND last_name = 'Maria'",
-                Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM produto WHERE nome = ?");
+        preparedStatement.setString(1, "Mouse");
+        preparedStatement.execute();
 
         // Quantas linhas foram modificadas depois do execute
-        Integer linhasModificadas = statement.getUpdateCount();
-
+        Integer linhasModificadas = preparedStatement.getUpdateCount();
         System.out.println("Quantidade de linhas que foram removidas: " + linhasModificadas);
     }
 }

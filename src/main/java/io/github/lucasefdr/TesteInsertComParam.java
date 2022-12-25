@@ -1,6 +1,5 @@
 package io.github.lucasefdr;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,17 +16,17 @@ public class TesteInsertComParam {
         String descricao = "Mouse sem fio Logitech";
         Double valor = 140.0D;
 
-        PreparedStatement statement = connection
+        PreparedStatement preparedStatement = connection
                 .prepareStatement("INSERT INTO produto (nome, descricao, valor) VALUES (?, ?, ?)",
                         Statement.RETURN_GENERATED_KEYS);
 
-        statement.setString(1, nome);
-        statement.setString(2, descricao);
-        statement.setDouble(3, valor);
+        preparedStatement.setString(1, nome);
+        preparedStatement.setString(2, descricao);
+        preparedStatement.setDouble(3, valor);
 
-        statement.execute();
+        preparedStatement.execute();
 
-        ResultSet rs = statement.executeQuery("SELECT * FROM produto ORDER BY id");
+        ResultSet rs = preparedStatement.executeQuery("SELECT * FROM produto ORDER BY id");
 
         while (rs.next()) {
             String nomeProduto = rs.getString("nome");
