@@ -12,29 +12,45 @@ public class TesteInsertComParam {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         Connection connection = connectionFactory.connection();
 
-        String nome = "Mouse";
-        String descricao = "Mouse sem fio Logitech";
-        Double valor = 140.0D;
+        // Controlando as transações não automáticas
+        connection.setAutoCommit(false);
 
-        PreparedStatement preparedStatement = connection
-                .prepareStatement("INSERT INTO produto (nome, descricao, valor) VALUES (?, ?, ?)",
-                        Statement.RETURN_GENERATED_KEYS);
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("INSERT INTO produto (nome, descricao, valor) VALUES (?, ?, ?)",
+                            Statement.RETURN_GENERATED_KEYS);
 
-        preparedStatement.setString(1, nome);
-        preparedStatement.setString(2, descricao);
-        preparedStatement.setDouble(3, valor);
+            adicionarVariavel("SmartTV", "40 polegadas", 2340.0D, preparedStatement);
+            adicionarVariavel("Notebook", "Lenovo S45", 3540.0D, preparedStatement);
 
-        preparedStatement.execute();
+            connection.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ROLLBACK EXECUTADO");
+            connection.rollback();
+        }
 
-        ResultSet rs = preparedStatement.executeQuery("SELECT * FROM produto ORDER BY id");
+        ResultSet rs = connection.prepareStatement("SELECT * FROM produto ORDER BY id").executeQuery();
 
         while (rs.next()) {
             String nomeProduto = rs.getString("nome");
             Integer idProduto = rs.getInt("id");
 
-            System.out.println("ID: " + idProduto + ", Nome: " + nomeProduto);
+            System.out.println("ID: " + idProduto + " - Nome: " + nomeProduto);
         }
 
-        connection.close();
+        rs.close();
+    }
+
+    public static void adicionarVariavel(String nome, String descricao, Double valor, PreparedStatement pstm)
+            throws Exception {
+        pstm.setString(1, nome);
+        pstm.setString(2, descricao);
+        pstm.setDouble(3, valor);
+
+        // if (nome == "Notebook")
+        // throw new Exception("Error");
+
+        pstm.execute();
     }
 }

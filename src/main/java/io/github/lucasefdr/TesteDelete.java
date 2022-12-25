@@ -10,8 +10,8 @@ public class TesteDelete {
         Connection connection = connectionFactory.connection();
 
         // Criando a declaração
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM produto WHERE nome = ?");
-        preparedStatement.setString(1, "Mouse");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM produto");
+        // preparedStatement.setString(1, "Mouse");
         preparedStatement.execute();
 
         // Quantas linhas foram modificadas depois do execute

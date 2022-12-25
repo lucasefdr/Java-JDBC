@@ -12,13 +12,13 @@ public class TesteSelect {
         Connection connection = connectionFactory.connection();
 
         // Guardando o resultado de uma query em um ResultSet
-        ResultSet rs = connection.prepareStatement("SELECT * FROM EMPLOYEES").executeQuery();
+        ResultSet rs = connection.prepareStatement("SELECT * FROM produto").executeQuery();
 
         while (rs.next()) {
-            Integer id = rs.getInt("employee_id");
-            String first_name = rs.getString("first_name");
+            Integer id = rs.getInt("id");
+            String nome = rs.getString("nome");
 
-            System.out.println("ID: " + id + " - First name: " + first_name);
+            System.out.println("ID: " + id + " - Produto: " + nome);
         }
 
         connection.close();
