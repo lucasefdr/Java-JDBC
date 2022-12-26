@@ -35,7 +35,7 @@ public class TesteInsertComParam {
 
                 while (rs.next()) {
                     String nomeProduto = rs.getString("nome");
-                    Integer idProduto = rs.getInt("id");
+                    int idProduto = rs.getInt("id");
 
                     System.out.println("ID: " + idProduto + " - Nome: " + nomeProduto);
                 }
@@ -49,7 +49,7 @@ public class TesteInsertComParam {
         pstm.setString(2, descricao);
         pstm.setDouble(3, valor);
 
-        if (nome == "Notebook")
+        if (nome.equals("Notebook"))
             throw new Exception("Error");
 
         pstm.execute();

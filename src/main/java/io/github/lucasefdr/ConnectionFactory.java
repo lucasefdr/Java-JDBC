@@ -1,7 +1,6 @@
 package io.github.lucasefdr;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
@@ -14,9 +13,12 @@ public class ConnectionFactory {
 
     public ConnectionFactory() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-        comboPooledDataSource.setJdbcUrl("jdbc:oracle:thin:@localhost:1521/XEPDB1");
-        comboPooledDataSource.setUser("kneladev");
-        comboPooledDataSource.setPassword("kneladev");
+        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost:3306/Java-JDBC");
+        comboPooledDataSource.setUser("root");
+        comboPooledDataSource.setPassword("258456");
+
+        // Configurando o máximo de conexões no pool
+        comboPooledDataSource.setMaxPoolSize(15);
 
         this.dataSource = comboPooledDataSource;
     }
