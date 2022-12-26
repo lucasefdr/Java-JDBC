@@ -10,6 +10,12 @@ public class Produto {
         this.descricao = descricao;
     }
 
+    public Produto(Integer id, String nome, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -28,7 +34,7 @@ public class Produto {
 
     @Override
     public String toString() {
-        return String.format("O produto criado foi: %d, %s, %s", this.id, this.nome, this.descricao);
+        return String.format("Informações do produto %d: %s - %s", this.id, this.nome, this.descricao);
     }
 
 }
