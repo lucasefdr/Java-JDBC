@@ -15,17 +15,14 @@ public class TesteListagemDeCategorias {
 
         try (Connection connection = new ConnectionFactory().connection()) {
             CategoriaDAO categoriaDAO = new CategoriaDAO(connection);
-            List<Categoria> listaDeCategorias = categoriaDAO.listarTodos();
+            List<Categoria> listaDeCategorias = categoriaDAO.listarComProdutos();
 
             listaDeCategorias.forEach(categoria -> {
                 System.out.println(categoria.getNome());
 
-                try {
-                    for (Produto produto : new ProdutoDAO(connection).buscarPorCategoria(categoria)) {
-                        System.out.println(" - " + produto.getNome() + ": " + produto.getDescricao());
-                    }
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+
+                for (Produto produto : categoria.getProdutos()) {
+                    System.out.println(" - " + produto.getNome() + ": " + produto.getDescricao());
                 }
             });
         }

@@ -57,7 +57,7 @@ public class ProdutoDAO {
     public List<Produto> buscarPorCategoria(Categoria categoria) throws SQLException {
         List<Produto> produtos = new ArrayList<>();
 
-        String sql = "SELECT * FROM produto p INNER JOIN categoria c ON p.categoria_id = c.id WHERE p.categoria_id = ?";
+        String sql = "SELECT * FROM produto p WHERE p.categoria_id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, categoria.getId());
