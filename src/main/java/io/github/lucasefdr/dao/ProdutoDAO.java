@@ -1,6 +1,8 @@
 package io.github.lucasefdr.dao;
 
+import io.github.lucasefdr.model.Categoria;
 import io.github.lucasefdr.model.Produto;
+import oracle.jdbc.proxy.annotation.Pre;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -48,6 +50,26 @@ public class ProdutoDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+        return produtos;
+    }
+
+    public List<Produto> buscarPorCategoria(Categoria categoria) throws SQLException {
+        List<Produto> produtos = new ArrayList<>();
+
+        String sql = "SELECT * FROM produto p INNER JOIN categoria c ON p.categoria_id = c.id WHERE p.categoria_id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, categoria.getId());
+            preparedStatement.execute();
+
+            try (ResultSet resultSet = preparedStatement.getResultSet()) {
+                while (resultSet.next()) {
+                    Produto produto = new Produto(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
+
+                    produtos.add(produto);
+                }
+            }
         }
         return produtos;
     }
