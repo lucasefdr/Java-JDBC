@@ -1,27 +1,34 @@
 package io.github.lucasefdr.projeto.controller;
 
+import io.github.lucasefdr.projeto.dao.ProdutoDAO;
+import io.github.lucasefdr.projeto.factory.ConnectionFactory;
 import io.github.lucasefdr.projeto.model.Produto;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoController {
+    private ProdutoDAO produtoDAO;
+
+    public ProdutoController() {
+        Connection connection = new ConnectionFactory().recuperarConexao();
+        this.produtoDAO = new ProdutoDAO(connection);
+    }
 
     public void deletar(Integer id) {
-        System.out.println("Deletando produto");
+        this.produtoDAO.deletar(id);
     }
 
     public void salvar(Produto produto) {
-        System.out.println("Salvando produto");
+        this.produtoDAO.salvar(produto);
     }
 
     public List<Produto> listar() {
-        List<Produto> produtos = new ArrayList<Produto>();
-        produtos.add(new Produto("Nome do Produto de teste", "Descrição do produto de teste"));
-        return produtos;
+        return this.produtoDAO.listar();
     }
 
     public void alterar(String nome, String descricao, Integer id) {
-        System.out.println("Alterando produto");
+        this.produtoDAO.alterar(nome, descricao, id);
     }
 }
