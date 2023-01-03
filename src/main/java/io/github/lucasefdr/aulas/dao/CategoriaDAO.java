@@ -1,8 +1,7 @@
-package io.github.lucasefdr.dao;
+package io.github.lucasefdr.aulas.dao;
 
-import io.github.lucasefdr.model.Categoria;
-import io.github.lucasefdr.model.Produto;
-import oracle.jdbc.proxy.annotation.Pre;
+import io.github.lucasefdr.aulas.model.Produto;
+import io.github.lucasefdr.aulas.model.Categoria;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

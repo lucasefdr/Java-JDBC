@@ -1,4 +1,4 @@
-package io.github.lucasefdr.model;
+package io.github.lucasefdr.aulas.model;
 
 public class Produto {
     private Integer id;
@@ -36,5 +36,4 @@ public class Produto {
     public String toString() {
         return String.format("Informações do produto %d: %s - %s", this.id, this.nome, this.descricao);
     }
-
 }

@@ -1,10 +1,9 @@
-package io.github.lucasefdr.test;
+package io.github.lucasefdr.aulas.test;
 
-import io.github.lucasefdr.dao.CategoriaDAO;
-import io.github.lucasefdr.dao.ProdutoDAO;
-import io.github.lucasefdr.factory.ConnectionFactory;
-import io.github.lucasefdr.model.Categoria;
-import io.github.lucasefdr.model.Produto;
+import io.github.lucasefdr.aulas.dao.CategoriaDAO;
+import io.github.lucasefdr.aulas.factory.ConnectionFactory;
+import io.github.lucasefdr.aulas.model.Categoria;
+import io.github.lucasefdr.aulas.model.Produto;
 
 import java.sql.Connection;
 import java.sql.SQLException;

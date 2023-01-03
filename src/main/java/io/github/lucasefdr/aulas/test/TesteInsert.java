@@ -1,6 +1,6 @@
-package io.github.lucasefdr.test;
+package io.github.lucasefdr.aulas.test;
 
-import io.github.lucasefdr.factory.ConnectionFactory;
+import io.github.lucasefdr.aulas.factory.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

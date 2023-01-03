@@ -1,12 +1,12 @@
-package io.github.lucasefdr.test;
+package io.github.lucasefdr.aulas.test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import io.github.lucasefdr.factory.ConnectionFactory;
-import io.github.lucasefdr.dao.ProdutoDAO;
-import io.github.lucasefdr.model.Produto;
+import io.github.lucasefdr.aulas.model.Produto;
+import io.github.lucasefdr.aulas.factory.ConnectionFactory;
+import io.github.lucasefdr.aulas.dao.ProdutoDAO;
 
 public class TesteInsertList {
     public static void main(String[] args) throws SQLException {

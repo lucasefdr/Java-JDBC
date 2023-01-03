@@ -1,4 +1,4 @@
-package io.github.lucasefdr.factory;
+package io.github.lucasefdr.aulas.factory;
 
 import java.sql.Connection;
 import java.sql.SQLException;

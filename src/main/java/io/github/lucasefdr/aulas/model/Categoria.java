@@ -1,4 +1,4 @@
-package io.github.lucasefdr.model;
+package io.github.lucasefdr.aulas.model;
 
 import java.util.ArrayList;
 import java.util.List;
